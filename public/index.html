@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casa da vovó Joaquina — Monitor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .tab-active { @apply border-b-2 border-green-500 text-green-700 font-semibold; }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+
+  <!-- Header -->
+  <header class="bg-green-700 text-white shadow">
+    <div class="max-w-5xl mx-auto px-4 py-4 flex items-center gap-3">
+      <span class="text-3xl">🏡</span>
+      <div>
+        <h1 class="text-xl font-bold leading-tight">Casa da vovó Joaquina</h1>
+        <p class="text-green-200 text-sm">Monitor de Contribuições e Rateios</p>
+      </div>
+      <span id="status-badge" class="ml-auto text-xs bg-gray-500 text-white px-3 py-1 rounded-full">Carregando...</span>
+    </div>
+  </header>
+
+  <!-- Tabs -->
+  <div class="max-w-5xl mx-auto px-4 mt-6">
+    <div class="flex gap-6 border-b border-gray-200 mb-6">
+      <button onclick="showTab('contributions')" id="tab-contributions"
+        class="pb-2 text-sm font-medium text-gray-500 hover:text-green-700 border-b-2 border-transparent tab-btn">
+        💰 Contribuição Mensal
+      </button>
+      <button onclick="showTab('expenses')" id="tab-expenses"
+        class="pb-2 text-sm font-medium text-gray-500 hover:text-green-700 border-b-2 border-transparent tab-btn">
+        🛒 Rateios / Compras
+      </button>
+      <button onclick="showTab('members')" id="tab-members"
+        class="pb-2 text-sm font-medium text-gray-500 hover:text-green-700 border-b-2 border-transparent tab-btn">
+        👥 Membros
+      </button>
+    </div>
+
+    <!-- Tab: Contribuições -->
+    <div id="tab-contributions-content" class="tab-content hidden">
+      <div id="contribution-list-view">
+        <h2 class="text-lg font-semibold text-gray-700 mb-4">Listas de Contribuição Mensal</h2>
+        <div id="contributions-cards" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"></div>
+      </div>
+      <div id="contribution-detail-view" class="hidden">
+        <button onclick="backToList('contributions')" class="text-sm text-green-700 mb-4 flex items-center gap-1">← Voltar</button>
+        <div id="contribution-detail"></div>
+      </div>
+    </div>
+
+    <!-- Tab: Rateios -->
+    <div id="tab-expenses-content" class="tab-content hidden">
+      <div id="expense-list-view">
+        <h2 class="text-lg font-semibold text-gray-700 mb-4">Rateios e Compras</h2>
+        <div id="expenses-cards" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"></div>
+      </div>
+      <div id="expense-detail-view" class="hidden">
+        <button onclick="backToList('expenses')" class="text-sm text-green-700 mb-4 flex items-center gap-1">← Voltar</button>
+        <div id="expense-detail"></div>
+      </div>
+    </div>
+
+    <!-- Tab: Membros -->
+    <div id="tab-members-content" class="tab-content hidden">
+      <h2 class="text-lg font-semibold text-gray-700 mb-4">Membros Cadastrados</h2>
+      <div class="flex gap-2 mb-4">
+        <input id="new-member-name" type="text" placeholder="Nome do novo membro"
+          class="border rounded px-3 py-2 text-sm flex-1 focus:outline-none focus:ring-2 focus:ring-green-400" />
+        <button onclick="addMember()" class="bg-green-600 text-white px-4 py-2 rounded text-sm hover:bg-green-700">Adicionar</button>
+      </div>
+      <div id="members-list" class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3"></div>
+    </div>
+  </div>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
